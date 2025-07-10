@@ -1,8 +1,7 @@
 {
-    // Comments are accepted in the manifest, even though it is JSON.
     "manifest_version": 3,
-    "name": "Chrome Extension v3 Starter",
-    "description": "A minimal example of a chrome extension using manifest v3",
+    "name": "Rye - Real, Scalable Interviews",
+    "description": "Simulate real LeetCode interviews",
     "version": "0.0.1",
     "icons": {
         "16": "logo/logo-16.png",
@@ -11,18 +10,25 @@
     },
     "options_page": "settings/settings.html",
     "action": {
-        "default_title": "Chrome Addon v3 Starter",
+        "default_title": "Rye",
         "default_popup": "popup/popup.html"
     },
     "permissions": [],
     "host_permissions": [
-        "*://*/*"
+        "https://leetcode.com/*"
     ],
     "background": {
         "service_worker": "service-worker.js"
     },
     "content_scripts": [{
-        "js": ["foreground.js"],
-        "matches": ["https://github.com/*"]
-    }]
+        "js": ["src/content.js"],
+        "matches": ["https://leetcode.com/*"],
+        "type": "module"
+    }],
+    "web_accessible_resources": [
+    {
+      "resources": ["toolbar.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
